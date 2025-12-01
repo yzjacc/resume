@@ -14,7 +14,7 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "skipLibCheck": true,
-    // "types": ["node"] // 确保包含必要的全局类型
+    "types": ["node"] // 确保包含必要的全局类型
   },
   "include": ["src"]
 }
