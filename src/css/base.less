@@ -416,7 +416,7 @@ a {
   display: inline-block;
   position: fixed;
   z-index: 10;
-  bottom: 6px;
+  bottom: calc(6px + env(safe-area-inset-bottom));
   left: 50%;
   margin-left: 520px;
   padding: 0 8px;
