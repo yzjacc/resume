@@ -3,7 +3,7 @@
 <h1 align="center">这是一份由自己设计并开发的简历</h1>
 
 <p align="center">
-  <a target="_blank" href="https://yuzijun.com">https://yuzijun.com</a>
+  <a target="_blank" href="https://yuzijun.cn">https://yuzijun.cn</a>
 </p>
 
 
