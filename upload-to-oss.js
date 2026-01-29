@@ -3,18 +3,29 @@ const OSS = require('ali-oss');
 const fs = require('fs');
 const path = require('path');
 
-// 加载环境变量
-const result = dotenv.config();
+// 加载环境变量 - 使用绝对路径
+const envPath = path.resolve(__dirname, '.env');
+const result = dotenv.config({
+  path: envPath,
+  override: true, // 覆盖已存在的环境变量
+});
 if (result.error) {
   console.error('Error loading .env file:', result.error);
+  console.error('Env file path:', envPath);
+  console.error('Env file exists:', fs.existsSync(envPath));
+} else {
+  console.log('Successfully loaded .env file from:', envPath);
+  console.log('OSS_REGION:', process.env.OSS_REGION);
+  console.log('OSS_ACCESS_KEY_ID:', process.env.OSS_ACCESS_KEY_ID);
+  console.log('OSS_ACCESS_KEY_SECRET:', process.env.OSS_ACCESS_KEY_SECRET);
+  console.log('OSS_BUCKET:', process.env.OSS_BUCKET);
 }
-
 
 async function uploadFile(ossFilePath, header) {
   console.log('开始上传文件到阿里云 OSS...');
 
   // 要上传的文件路径
-  const filePath = path.resolve(__dirname, 'index.html');
+  let filePath = path.resolve(__dirname, ossFilePath);
   // 规范化本地文件路径
   const localFilePath = path.normalize(filePath);
   // OSS 中的文件路径
@@ -41,13 +52,11 @@ async function uploadFile(ossFilePath, header) {
     // 自定义请求头
     const headers = {
       // 指定Object的存储类型
-
       'x-oss-storage-class': 'Standard',
       // 指定Object的访问权限
       'x-oss-object-acl': 'public-read',
       // 通过文件URL访问文件时，指定以附件形式下载文件
-      'Content-Disposition': 'inline',
-
+      'Content-Disposition': ossFilePath === 'resume.pdf' ? 'attachment' : 'inline',
       // 设置Object的标签，可同时设置多个标签
       'x-oss-tagging': 'Tag1=1&Tag2=2',
       // 指定PutObject操作时是否覆盖同名目标Object。此处设置为true，表示禁止覆盖同名Object
