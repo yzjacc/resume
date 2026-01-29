@@ -10,7 +10,7 @@ function buildAndConvert() {
   console.log('\n=== 开始构建和转换 ===');
 
   // 执行构建命令
-  exec('npm run prettier && npx tsc && npx vite build', {
+  exec('npm run prettier && npx tsc && npx vite build --watch', {
     cwd: __dirname,
     stdio: 'inherit'
   }, (error, stdout, stderr) => {
