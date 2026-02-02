@@ -7,7 +7,7 @@
     "start": "npm run dev",
     "dev": "vite",
     "build": "npm run prettier && tsc && vite build && npm run pdf",
-    "watch": "node watch-simple.js",
+    "watch": "node watch-pdf.js",
     "pdf": "node html-to-pdf.js",
     "preview": "vite preview",
     "prettier": "prettier --write ./src"
