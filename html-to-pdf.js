@@ -32,8 +32,8 @@ async function generatePDF() {
     // 生成PDF
     console.log('Generating PDF...');
     await page.pdf({
-      path: 'resume.pdf',
-      width: 746, heigh: 1100,
+      path: '字节跳动-Web前端工程师-于子俊.pdf',
+      width: 746, heigh: 1101,
       printBackground: true,
     });
 
