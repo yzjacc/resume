@@ -6,8 +6,9 @@ async function generatePDF() {
   let browser = null;
 
   try {
-    // 启动浏览器，添加超时设置
+    // 启动浏览器，添加超时设置，使用系统已安装的 Chrome
     browser = await puppeteer.launch({
+      executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
       timeout: 60000, // 浏览器启动超时设置为60秒
       args: ['--no-sandbox', '--disable-setuid-sandbox'] // 添加无沙箱模式，提高稳定性
     });
@@ -15,8 +16,6 @@ async function generatePDF() {
     const page = await browser.newPage();
 
     // 设置页面大小为A4
-    await page.setViewport({ width: 827, height: 1170 });
-
     // 加载本地index.html文件
     const htmlPath = path.resolve(__dirname, 'index.html');
     console.log(`Loading HTML file: ${htmlPath}`);
@@ -34,14 +33,8 @@ async function generatePDF() {
     console.log('Generating PDF...');
     await page.pdf({
       path: 'resume.pdf',
-      format: 'A4',
+      width: 746, heigh: 1100,
       printBackground: true,
-      margin: {
-        top: '1cm',
-        right: '1cm',
-        bottom: '1cm',
-        left: '1cm'
-      }
     });
 
     await browser.close();

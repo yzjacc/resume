@@ -1,5 +1,5 @@
 const chokidar = require('chokidar');
-const { execSync } = require('child_process');
+const { execSync, exec } = require('child_process');
 const path = require('path');
 
 // 监听的文件路径
@@ -9,6 +9,8 @@ console.log(`Watching for changes in ${indexHtmlPath}`);
 
 // 初始化时生成一次PDF
 console.log('Generating initial PDF...');
+exec('vite', { stdio: 'inherit' });
+exec('vite build --watch', { stdio: 'inherit' });
 execSync('node html-to-pdf.js', { stdio: 'inherit' });
 
 // 使用chokidar监听文件变化
