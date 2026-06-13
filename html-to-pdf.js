@@ -32,7 +32,7 @@ async function generatePDF() {
     // 生成PDF
     console.log('Generating PDF...');
     await page.pdf({
-      path: '字节跳动-Web前端工程师-于子俊.pdf',
+      path: '字节跳动-全栈工程师-于子俊.pdf',
       width: 746, heigh: 1101,
       printBackground: true,
     });
