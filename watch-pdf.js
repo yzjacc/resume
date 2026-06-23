@@ -3,9 +3,11 @@ const { execSync, exec } = require('child_process');
 const path = require('path');
 
 // 监听的文件路径
-const indexHtmlPath = path.resolve(__dirname, 'index.html');
+const htmlPaths = ['index.html', 'web-frontend.html'].map((fileName) =>
+  path.resolve(__dirname, fileName)
+);
 
-console.log(`Watching for changes in ${indexHtmlPath}`);
+console.log(`Watching for changes in ${htmlPaths.join(', ')}`);
 
 // 初始化时生成一次PDF
 console.log('Generating initial PDF...');
@@ -14,13 +16,13 @@ exec('vite build --watch', { stdio: 'inherit' });
 execSync('node html-to-pdf.js', { stdio: 'inherit' });
 
 // 使用chokidar监听文件变化
-const watcher = chokidar.watch(indexHtmlPath, {
+const watcher = chokidar.watch(htmlPaths, {
   ignored: /(^|[\\/])\../, // 忽略隐藏文件
   persistent: true,
   awaitWriteFinish: {
     stabilityThreshold: 100,
-    pollInterval: 100
-  }
+    pollInterval: 100,
+  },
 });
 
 // 监听文件变化事件
