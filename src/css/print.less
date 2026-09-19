@@ -8,6 +8,7 @@
 @media print {
   // 隐藏部分元素
   .status-bar .status,
+  .last-modified,
   .pdf,
   footer.license-footer {
     display: none;
@@ -22,6 +23,9 @@
     position: absolute;
   }
   .content {
+    opacity: 1;
+    transform: none;
+    animation: none;
     margin: 0 auto;
     border-radius: 0;
     box-shadow: none;
@@ -64,24 +68,14 @@
     }
   }
   footer {
-    position: absolute;
-    z-index: 1;
-    width: 1024px;
-    bottom: 18px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 13px;
-    line-height: 24px;
-    text-align: right;
-    padding: 0 48px;
-    &.github-footer {
-      display: none;
-    }
-    &.print-footer {
-      display: block;
-      .footer-link {
-        margin: 0;
-      }
-    }
+    display: none !important;
+  }
+  .item-hd,
+  .section-hd {
+    break-after: avoid;
+  }
+  .item,
+  .section-list > li {
+    break-inside: avoid;
   }
 }

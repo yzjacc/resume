@@ -1,20 +1,20 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "useDefineForClassFields": true,
+    "target": "ES2022",
     "module": "ESNext",
-    "lib": ["ESNext", "DOM"],
-    "moduleResolution": "Node",
+    "moduleResolution": "Bundler",
     "strict": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "esModuleInterop": true,
+    "allowJs": true,
+    "checkJs": false,
     "noEmit": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
     "skipLibCheck": true,
-    "types": ["node"] // 确保包含必要的全局类型
+    "types": [
+      "node"
+    ],
+    "esModuleInterop": true
   },
-  "include": ["src"]
+  "include": [
+    "vite.config.ts",
+    "scripts/lib/*.mjs"
+  ]
 }

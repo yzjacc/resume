@@ -1,0 +1,29 @@
+{
+  "siteUrl": "https://yuzijun.cn",
+  "name": "于子俊",
+  "englishName": "Zijun Yu",
+  "username": "yzjacc",
+  "description": "于子俊的个人简历，展示 Web 前端与全栈开发经历、项目实践和专业能力。",
+  "updatedAt": "2026-06-01",
+  "personalInfo": "男 / 2000.02",
+  "education": "本科 / 2022年毕业 / 4年工作经验",
+  "school": "哈尔滨理工大学 · 软件工程",
+  "email": "yzjacc@gmail.com",
+  "phone": "18845641518",
+  "phoneLabel": "+86 188 4564 1518",
+  "github": "https://github.com/yzjacc",
+  "variants": [
+    {
+      "id": "fullstack",
+      "htmlFile": "index.html",
+      "role": "全栈开发工程师",
+      "pdfFile": "字节跳动-全栈工程师-于子俊.pdf"
+    },
+    {
+      "id": "webFrontend",
+      "htmlFile": "web-frontend.html",
+      "role": "Web前端开发工程师",
+      "pdfFile": "字节跳动-Web前端工程师-于子俊.pdf"
+    }
+  ]
+}

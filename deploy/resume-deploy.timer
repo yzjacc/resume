@@ -1,0 +1,11 @@
+[Unit]
+Description=Check the resume repository for updates
+
+[Timer]
+OnBootSec=1min
+OnUnitInactiveSec=30s
+AccuracySec=5s
+Unit=resume-deploy.service
+
+[Install]
+WantedBy=timers.target

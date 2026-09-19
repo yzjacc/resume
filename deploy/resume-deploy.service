@@ -1,0 +1,14 @@
+[Unit]
+Description=Build and publish the resume website
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+Environment=PATH=/www/server/nodejs/v24.16.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+Environment=PUPPETEER_NO_SANDBOX=true
+ExecStart=/bin/bash /www/wwwroot/resume/scripts/deploy-server.sh
+TimeoutStartSec=15min
+Nice=15
+IOSchedulingClass=idle
+KillMode=control-group

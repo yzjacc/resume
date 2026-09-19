@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title><%= title %></title>
+    <meta name="description" content="<%= description %>" />
+    <meta name="author" content="<%= profile.name %>" />
+    <link rel="canonical" href="<%= canonical %>" />
+    <meta property="og:type" content="profile" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:title" content="<%= title %>" />
+    <meta property="og:description" content="<%= description %>" />
+    <meta property="og:url" content="<%= canonical %>" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="stylesheet" href="/css/index.less" />
+    <script type="application/ld+json"><%- jsonLd %></script>
+  </head>
+  <body>
+    <p class="last-modified">最后更新时间：<time datetime="<%= profile.updatedAt %>"><%= updatedLabel %></time></p>
+    <main class="content">
+      <header class="content-hd">
+        <section class="title">
+          <div class="name"><h1><%= profile.name %><small><%= profile.englishName %></small></h1></div>
+          <div class="job"><h2><%= variant.role %></h2></div>
+        </section>
+        <section class="info">
+          <h2><%= profile.personalInfo %></h2>
+          <h3><%= profile.education %></h3>
+          <h3><%= profile.school %></h3>
+        </section>
+        <section class="contact" aria-label="联系方式">
+          <ul>
+            <li><a href="<%= canonical %>" aria-label="个人主页"><span class="contact-link"><%= profile.siteUrl %></span><i class="iconfont icon-homepage" aria-hidden="true"></i></a></li>
+            <li><a href="mailto:<%= profile.email %>" aria-label="电子邮箱"><span class="contact-link"><%= profile.email %></span><i class="iconfont icon-email" aria-hidden="true"></i></a></li>
+            <li><a href="tel:<%= profile.phone %>" aria-label="联系电话"><span class="contact-link"><%= profile.phoneLabel %></span><i class="iconfont icon-phone" aria-hidden="true"></i></a></li>
+          </ul>
+        </section>
+      </header>
+      <%- experience %>
+    </main>
+    <footer class="github-footer">
+      <a class="footer-link" href="<%= canonical %>"><i class="iconfont icon-link" aria-hidden="true"></i> <%= new URL(canonical).hostname %></a>
+      <a class="footer-link" href="<%= profile.github %>" rel="me noopener noreferrer" target="_blank"><i class="iconfont icon-github" aria-hidden="true"></i> <%= profile.username %></a>
+    </footer>
+    <a class="pdf" href="<%= pdfHref %>"><i class="iconfont icon-pdf" aria-hidden="true"></i> PDF简历</a>
+  </body>
+</html>

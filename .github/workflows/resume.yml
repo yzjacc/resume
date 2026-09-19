@@ -1,0 +1,46 @@
+name: Build and publish resume
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: resume-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Install Chinese PDF fonts
+        run: sudo apt-get update && sudo apt-get install -y fonts-noto-cjk
+      - run: npm run check
+      - run: npm run build
+        env:
+          PUPPETEER_NO_SANDBOX: 'true'
+      - run: npm run deploy:dry-run
+      - uses: actions/upload-artifact@v4
+        with:
+          name: resume-${{ github.sha }}
+          path: dist/
+          if-no-files-found: error
+      - name: Publish public resume files to OSS
+        if: github.ref == 'refs/heads/main' && github.event_name == 'workflow_dispatch' && vars.OSS_DEPLOY_ENABLED == 'true'
+        run: npm run deploy
+        env:
+          OSS_REGION: ${{ vars.OSS_REGION }}
+          OSS_BUCKET: ${{ vars.OSS_BUCKET }}
+          OSS_ACCESS_KEY_ID: ${{ secrets.OSS_ACCESS_KEY_ID }}
+          OSS_ACCESS_KEY_SECRET: ${{ secrets.OSS_ACCESS_KEY_SECRET }}
+          CDN_DOMAINS: ${{ vars.CDN_DOMAINS }}
