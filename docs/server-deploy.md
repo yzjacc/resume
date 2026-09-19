@@ -12,6 +12,7 @@ PM2 watcher and application are independent and must not be modified.
 `deploy/resume-deploy.service` uses the server's Node 24 installation. Adjust
 its PATH for a different machine. Install Chrome runtime libraries and Chinese
 fonts before the first build. Puppeteer downloads its own browser during npm ci.
+Only Chrome is downloaded; the unused separate headless-shell download is skipped.
 The service runs trusted repository code as root with the Chrome sandbox disabled;
 it must never build untrusted pull requests.
 
